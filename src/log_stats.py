@@ -5,7 +5,7 @@ Created on Dec 9, 2011
 '''
 
 import matplotlib.pyplot as plt
-import sys, fileinput, datetime
+import sys
 
 if __name__ == '__main__':
 
@@ -15,29 +15,27 @@ if __name__ == '__main__':
     
     print sys.argv[1:]
     
-    times = []
+    times  = []
     points = []
     for filename in sys.argv[1:]:
-        p = 0
-        pts  = []
         time = []
         print "Processing %s" % filename
         for line in open(filename, "r"):
             (ts, data) = line.split()
-            p = p + 1
             t = float(ts)
             time.append(t)
-            pts.append(p)
         times.append(time)
-        points.append(pts)
     
-    fig = plt.figure()
+    fig  = plt.figure()
     axes = fig.add_subplot(111)
     
     for i in range(0, len(times)):
-        axes.plot(times[i], points[i])
+        axes.plot(times[i], range(1, len(times[i])+1))
     
     axes.autoscale_view(True, True, True)
-    
+
+    plt.title("Distribution of messages in time")
+    plt.xlabel("Time")
+    plt.ylabel("#Messages")
     plt.show()
     

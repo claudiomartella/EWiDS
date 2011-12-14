@@ -30,7 +30,7 @@ if __name__ == '__main__':
     axes = fig.add_subplot(111)
     
     for i in range(0, len(times)):
-        axes.plot(times[i], range(1, len(times[i])+1))
+        axes.plot(times[i], range(1, len(times[i])+1), '+')
     
     axes.autoscale_view(True, True, True)
 

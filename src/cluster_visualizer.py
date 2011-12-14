@@ -4,8 +4,7 @@ Created on Dec 9, 2011
 @author: cma330
 '''
 
-import igraph
-
+from graph_tool.all import *
 
 def generate_mcl_matrix(G):
     mcifile = ""
@@ -55,7 +54,8 @@ def run_mcl_cluster(G):
             num+=1
  
 if __name__ == "__main__":
-    G = igraph.Graph.Read_GraphML("ow.graphml")
+    g = Graph()
+    G = load_graph("ow.graphml", file_format="xml")
     print "Edges: " + str(G.ecount())
     print "Nodes: " + str(G.vcount())
     G.simplify()

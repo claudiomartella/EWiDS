@@ -14,16 +14,20 @@ header = '<?xml version="1.0" encoding="UTF-8"?>\n<graphml xmlns="http://graphml
 graphd = '  <graph id="G" edgedefault="undirected">\n'
 footer = '  </graph>\n</graphml>\n'
 edged  = '  <key id="ts" for="edge" attr.name="ts" attr.type="float"/>\n'
+vertd  = '  <key id="id" for="node" attr.name="id" attr.type="int"/>\n'
 
 def dict_to_graphml(nodes_dict, filename):
     output = open(filename, "w")
     # print header
     output.write(header)
     output.write(edged)
+    output.write(vertd)
     output.write(graphd)
     
     for nodeid, edges in nodes_dict.items():
-        output.write('    <node id="%d"/>\n' % nodeid)
+        output.write('    <node id="%d">\n' % nodeid)
+        output.write('      <data key="id">%d</data>\n')
+        output.write('    </node>\n')
         for edge in edges:
             (other, ts) = edge
             output.write('    <edge source="%d" target="%d">\n' % (nodeid, other))
